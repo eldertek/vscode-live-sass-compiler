@@ -35,7 +35,9 @@ export class OutputWindow {
     }
 
     static dispose() {
-        this.MsgChannel.dispose();
+        if (OutputWindow._msgChannel) {
+            OutputWindow._msgChannel.dispose();
+        }
     }
 
 }

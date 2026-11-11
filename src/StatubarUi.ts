@@ -74,6 +74,8 @@ export class StatusBarUi {
     }
 
     static dispose() {
-        StatusBarUi.statusBarItem.dispose();
+        if (StatusBarUi._statusBarItem) {
+            StatusBarUi._statusBarItem.dispose();
+        }
     }
 }

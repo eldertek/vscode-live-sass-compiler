@@ -22,7 +22,11 @@ export class AppModel {
     }
 
     static get basePath(): string {
-        return vscode.workspace.rootPath || path.basename(vscode.window.activeTextEditor.document.fileName);
+        const folder = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+        if (folder) return folder;
+        const activeDoc = vscode.window.activeTextEditor?.document;
+        if (activeDoc) return path.dirname(activeDoc.fileName);
+        return '';
     }
 
     /**
@@ -53,7 +57,9 @@ export class AppModel {
     async compileOnSave() {
         if (!this.isWatching) return;
 
-        let currentFile = vscode.window.activeTextEditor.document.fileName;
+        let activeEditor = vscode.window.activeTextEditor;
+        if (!activeEditor || !activeEditor.document) return;
+        let currentFile = activeEditor.document.fileName;
         if (!this.isASassFile(currentFile, true)) return;
         // if (!(await this.isSassFileIncluded(fileUri, '**/*.s[a|c]ss'))) return;
         OutputWindow.Show('Change Detected...', [path.basename(currentFile)]);

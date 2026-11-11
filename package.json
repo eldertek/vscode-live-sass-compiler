@@ -2,7 +2,10 @@
     "name": "live-sass",
     "displayName": "Live Sass Compiler",
     "description": "Compile Sass or Scss to CSS at realtime with live browser reload.",
-    "version": "3.0.0",
+    "version": "3.1.0",
+    "sponsor": {
+        "url": "https://www.patreon.com/eldertek"
+    },
     "publisher": "ritwickdey",
     "author": {
         "name": "Ritwick Dey",
@@ -10,7 +13,7 @@
         "url": "http://twitter.com/Dey_Ritwick"
     },
     "engines": {
-        "vscode": "^1.0.0"
+        "vscode": "^1.85.0"
     },
     "keywords": [
         "SASS",
@@ -29,6 +32,7 @@
         "theme": "dark"
     },
     "activationEvents": [
+        "onStartupFinished",
         "workspaceContains:**/*.s[ac]ss",
         "onLanguage:scss",
         "onLanguage:sass"
